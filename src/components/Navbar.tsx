@@ -5,29 +5,19 @@ const Navbar = () => {
     <nav className="bg-gray-800 p-4">
       <ul className="flex space-x-4">
         <li>
-          <Link href="/">
-            <a className="text-white">Dashboard</a>
-          </Link>
+          <Link href="/" className="text-white">Dashboard</Link>
         </li>
         <li>
-          <Link href="/products">
-            <a className="text-white">Products</a>
-          </Link>
+          <Link href="/products" className="text-white">Products</Link>
         </li>
         <li>
-          <Link href="/orders">
-            <a className="text-white">Orders</a>
-          </Link>
+          <Link href="/orders" className="text-white">Orders</Link>
         </li>
         <li>
-          <Link href="/customers">
-            <a className="text-white">Customers</a>
-          </Link>
+          <Link href="/customers" className="text-white">Customers</Link>
         </li>
         <li>
-          <Link href="/suppliers">
-            <a className="text-white">Suppliers</a>
-          </Link>
+          <Link href="/suppliers" className="text-white">Suppliers</Link>
         </li>
       </ul>
     </nav>
