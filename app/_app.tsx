@@ -1,13 +1,13 @@
-import '@/styles/globals.css';
-import { NextUIProvider } from '@nextui-org/react';
-import Navbar from '@/components/Navbar';
+import '../styles/globals.css';
+import type { AppProps } from 'next/app';
+import Navbar from '../src/components/Navbar'; // Doğru yolu kullanın
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NextUIProvider>
+    <div>
       <Navbar />
       <Component {...pageProps} />
-    </NextUIProvider>
+    </div>
   );
 }
 
