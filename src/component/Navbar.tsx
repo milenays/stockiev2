@@ -10,8 +10,33 @@ export default function Navbar() {
           </Link>
         </li>
         <li>
-          <Link href="/about" legacyBehavior>
-            <a className="text-blue-500">About</a>
+          <Link href="/dashboard" legacyBehavior>
+            <a className="text-blue-500">Dashboard</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/products" legacyBehavior>
+            <a className="text-blue-500">Products</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/orders" legacyBehavior>
+            <a className="text-blue-500">Orders</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/customers" legacyBehavior>
+            <a className="text-blue-500">Customers</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/suppliers" legacyBehavior>
+            <a className="text-blue-500">Suppliers</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/categories" legacyBehavior>
+            <a className="text-blue-500">Categories</a>
           </Link>
         </li>
       </ul>
