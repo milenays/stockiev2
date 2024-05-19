@@ -1,5 +1,7 @@
 'use client';
+
 import { useState } from 'react';
+import { Input, Button } from '@nextui-org/react';
 
 export default function AddProduct() {
   const [formData, setFormData] = useState({
@@ -21,6 +23,7 @@ export default function AddProduct() {
     desi: 0,
     supplier: '',
     tags: [''],
+    price: ''
   });
 
   const [error, setError] = useState('');
@@ -50,16 +53,20 @@ export default function AddProduct() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 text-white">
       <h1 className="text-2xl font-bold mb-4">Add Product</h1>
       {error && <p className="text-red-500">{error}</p>}
-      <form className="w-full max-w-lg bg-white p-8 shadow-md rounded" onSubmit={handleSubmit}>
+      <form className="w-full max-w-lg bg-gray-700 p-8 shadow-md rounded" onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">Name</label>
-          <input name="name" value={formData.name} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" />
+          <label className="block text-white text-sm font-bold mb-2" htmlFor="name">Name</label>
+          <Input name="name" value={formData.name} onChange={handleChange} fullWidth />
+        </div>
+        <div className="mb-4">
+          <label className="block text-white text-sm font-bold mb-2" htmlFor="price">Price</label>
+          <Input name="price" value={formData.price} onChange={handleChange} fullWidth />
         </div>
         {/* Diğer form alanları aynı şekilde */}
-        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+        <Button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</Button>
       </form>
     </div>
   );
