@@ -1,9 +1,16 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 
+interface Customer {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+}
+
 const CustomersPage = () => {
-  const [customers, setCustomers] = useState([]);
+  const [customers, setCustomers] = useState<Customer[]>([]);
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -11,19 +18,22 @@ const CustomersPage = () => {
       const data = await res.json();
       setCustomers(data);
     };
+
     fetchCustomers();
   }, []);
 
   return (
-    <div className="min-h-screen p-6">
-      <h1 className="text-2xl font-bold mb-4">Customers</h1>
-      <ul>
-        {customers.map((customer) => (
-          <li key={customer._id}>
-            {customer.name} - {customer.email} - {customer.phone}
-          </li>
-        ))}
-      </ul>
+    <div>
+      <h1>Customers</h1>
+      {customers.length > 0 ? (
+        <ul>
+          {customers.map((customer) => (
+            <li key={customer._id}>{customer.name} - {customer.email} - {customer.phone} - {customer.address}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>No customers found</p>
+      )}
     </div>
   );
 };
