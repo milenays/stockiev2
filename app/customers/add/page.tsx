@@ -1,11 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const AddCustomerPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ const AddCustomerPage = () => {
       setName('');
       setEmail('');
       setPhone('');
+      router.push('/customers'); // Redirect to the customers page
     } else {
       alert('Failed to add customer');
     }
