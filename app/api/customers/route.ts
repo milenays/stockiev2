@@ -9,9 +9,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const { name, email } = await request.json();
+  const { fullName, email, phone, address, city, country, zipCode } = await request.json();
   await connectMongo();
-  const newCustomer = new Customer({ name, email });
+  const newCustomer = new Customer({ fullName, email, phone, address, city, country, zipCode });
   await newCustomer.save();
   return NextResponse.json(newCustomer);
 }
