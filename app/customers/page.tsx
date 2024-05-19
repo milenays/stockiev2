@@ -1,16 +1,18 @@
-'use client';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Table, Button, Input } from '@nextui-org/react';
 
-import { useState, useEffect } from 'react';
-
-export default function Customers() {
+const CustomersPage = () => {
   const [customers, setCustomers] = useState([]);
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [country, setCountry] = useState('');
-  const [zipCode, setZipCode] = useState('');
+  const [newCustomer, setNewCustomer] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    country: '',
+    zipCode: ''
+  });
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -22,93 +24,76 @@ export default function Customers() {
     fetchCustomers();
   }, []);
 
-  const addCustomer = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const res = await fetch('/api/customers', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ fullName, email, phone, address, city, country, zipCode }),
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewCustomer({ ...newCustomer, [name]: value });
+  };
 
-    const newCustomer = await res.json();
-    setCustomers([...customers, newCustomer]);
-    setFullName('');
-    setEmail('');
-    setPhone('');
-    setAddress('');
-    setCity('');
-    setCountry('');
-    setZipCode('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('/api/customers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCustomer)
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setCustomers([...customers, data]);
+        setNewCustomer({
+          fullName: '',
+          email: '',
+          phone: '',
+          address: '',
+          city: '',
+          country: '',
+          zipCode: ''
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <div>
-      <h1>Customers</h1>
-      <form onSubmit={addCustomer}>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="City"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Zip Code"
-          value={zipCode}
-          onChange={(e) => setZipCode(e.target.value)}
-          required
-        />
-        <button type="submit">Add Customer</button>
-      </form>
-      {customers.length > 0 ? (
-        <ul>
-          {customers.map((customer) => (
-            <li key={customer._id}>
-              {customer.fullName} - {customer.email}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No customers found</p>
-      )}
-    </div>
-  );
-}
+    <div className="p-8 bg-gray-800 text-white min-h-screen">
+      <h1 className="text-2xl mb-4">Customers</h1>
+      <form onSubmit={handleSubmit} className="mb-8 bg-gray-700 p-4 rounded-lg shadow-md">
+        <h2 className="text-xl mb-4">Add Customer</h2>
+        <div className="grid grid-cols-2 gap-4">
+          <Input
+            fullWidth
+            label="Full Name"
+            name="fullName"
+            value={newCustomer.fullName}
+            onChange={handleChange}
+            className="bg-gray-600"
+          />
+          <Input
+            fullWidth
+            label="Email"
+            name="email"
+            value={newCustomer.email}
+            onChange={handleChange}
+            className="bg-gray-600"
+          />
+          <Input
+            fullWidth
+            label="Phone"
+            name="phone"
+            value={newCustomer.phone}
+            onChange={handleChange}
+            className="bg-gray-600"
+          />
+          <Input
+            fullWidth
+            label="Address"
+            name="address"
+            value={newCustomer.address}
+            onChange={handleChange}
+            className="bg-gray-600"
+          />
+          <Input
+          
