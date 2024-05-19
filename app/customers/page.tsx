@@ -96,4 +96,65 @@ const CustomersPage = () => {
             className="bg-gray-600"
           />
           <Input
-          
+            fullWidth
+            label="City"
+            name="city"
+            value={newCustomer.city}
+            onChange={handleChange}
+            className="bg-gray-600"
+          />
+          <Input
+            fullWidth
+            label="Country"
+            name="country"
+            value={newCustomer.country}
+            onChange={handleChange}
+            className="bg-gray-600"
+          />
+          <Input
+            fullWidth
+            label="Zip Code"
+            name="zipCode"
+            value={newCustomer.zipCode}
+            onChange={handleChange}
+            className="bg-gray-600"
+          />
+        </div>
+        <Button type="submit" className="mt-4 bg-blue-600 hover:bg-blue-700">
+          Add Customer
+        </Button>
+      </form>
+
+      {customers.length > 0 ? (
+        <Table aria-label="Customers Table" className="bg-gray-700">
+          <Table.Header>
+            <Table.Column>Full Name</Table.Column>
+            <Table.Column>Email</Table.Column>
+            <Table.Column>Phone</Table.Column>
+            <Table.Column>Address</Table.Column>
+            <Table.Column>City</Table.Column>
+            <Table.Column>Country</Table.Column>
+            <Table.Column>Zip Code</Table.Column>
+          </Table.Header>
+          <Table.Body>
+            {customers.map((customer) => (
+              <Table.Row key={customer._id}>
+                <Table.Cell>{customer.fullName}</Table.Cell>
+                <Table.Cell>{customer.email}</Table.Cell>
+                <Table.Cell>{customer.phone}</Table.Cell>
+                <Table.Cell>{customer.address}</Table.Cell>
+                <Table.Cell>{customer.city}</Table.Cell>
+                <Table.Cell>{customer.country}</Table.Cell>
+                <Table.Cell>{customer.zipCode}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      ) : (
+        <p>No customers found</p>
+      )}
+    </div>
+  );
+};
+
+export default CustomersPage;
