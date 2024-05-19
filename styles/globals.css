@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  background-color: #1a202c; /* Dark mode için arka plan rengi */
+  color: #edf2f7; /* Yazı rengi */
+}
