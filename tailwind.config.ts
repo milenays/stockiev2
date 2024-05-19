@@ -1,14 +1,15 @@
-import { defineConfig } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
-export default defineConfig({
+const config: Config = {
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{js,ts,jsx,tsx}',
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class', // Dark mode kullanımı
   theme: {
     extend: {},
   },
   plugins: [],
-})
+};
+
+export default config;
