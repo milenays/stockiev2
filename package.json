@@ -27,3 +27,10 @@
     "typescript": "^5"
   }
 }
+
+{
+  "scripts": {
+    "build:css": "tailwindcss -i ./styles/globals.css -o ./dist/tailwind.css"
+  }
+}
+
