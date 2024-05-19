@@ -3,23 +3,15 @@ import connectMongo from '@/lib/mongodb';
 import Customer from '@/models/Customer';
 
 export async function GET() {
-  try {
-    await connectMongo();
-    const customers = await Customer.find();
-    return NextResponse.json(customers);
-  } catch (error) {
-    return NextResponse.json({ success: false, error: error.message });
-  }
+  await connectMongo();
+  const customers = await Customer.find();
+  return NextResponse.json(customers);
 }
 
 export async function POST(request: Request) {
-  try {
-    const { name, email, phone } = await request.json();
-    await connectMongo();
-    const customer = new Customer({ name, email, phone });
-    await customer.save();
-    return NextResponse.json({ success: true, customer });
-  } catch (error) {
-    return NextResponse.json({ success: false, error: error.message });
-  }
+  const { name, email } = await request.json();
+  await connectMongo();
+  const newCustomer = new Customer({ name, email });
+  await newCustomer.save();
+  return NextResponse.json(newCustomer);
 }
