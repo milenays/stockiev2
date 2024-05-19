@@ -4,14 +4,13 @@ import Navbar from '@/components/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'Stockie',
-  description: 'Manage your stock easily',
-};
-
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <title>Stockie</title>
+        <meta name="description" content="Manage your stock easily" />
+      </head>
       <body className={inter.className}>
         <Navbar />
         {children}
