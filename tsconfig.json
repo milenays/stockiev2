@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+ "baseUrl": ".",
+    "paths": {
+      "@/lib/*": ["lib/*"],
+      "@/models/*": ["models/*"]
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
