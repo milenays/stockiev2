@@ -1,6 +1,16 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema, Document, Model } from 'mongoose';
 
-const CustomerSchema = new mongoose.Schema({
+interface ICustomer extends Document {
+  fullName: string;
+  email: string;
+  phone: string;
+  address: string;
+  city: string;
+  country: string;
+  zipCode: string;
+}
+
+const CustomerSchema: Schema = new Schema({
   fullName: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
@@ -10,6 +20,6 @@ const CustomerSchema = new mongoose.Schema({
   zipCode: { type: String, required: true },
 });
 
-const Customer = mongoose.models.Customer || mongoose.model('Customer', CustomerSchema);
+const Customer: Model<ICustomer> = mongoose.models.Customer || mongoose.model<ICustomer>('Customer', CustomerSchema);
 
 export default Customer;
